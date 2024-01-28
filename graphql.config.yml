@@ -1,0 +1,10 @@
+schema:
+  - "https://spacex-production.up.railway.app/"
+documents:
+  - "./src/**/*.ts"
+generates:
+  ./src/graphql/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo

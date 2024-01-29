@@ -4,16 +4,20 @@ import {
   StatusBar,
   Text,
   View,
+  ActivityIndicator,
 } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useExampleQuery } from "./graphql/graphql";
 
 export const Screen: React.FC = () => {
-  const { data } = useExampleQuery();
+  const { data, loading, error } = useExampleQuery();
   const isDarkMode = useColorScheme() === "dark";
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  if (loading) return <ActivityIndicator />;
+  if (error) return <Text>ERROR on useExampleQuery</Text>;
 
   return (
     <SafeAreaView style={backgroundStyle}>
